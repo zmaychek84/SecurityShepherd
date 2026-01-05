@@ -10,7 +10,52 @@
           "version": "1.0.0",
           "semanticVersion": "1.0.0",
           "informationUri": "https://www.glog.ai",
-          "rules": [],
+          "rules": [
+            {
+              "id": "787a51f2-fcb1-3042-803d-a22d55def02b",
+              "name": "Exclusion of Unreadable Files from Scans Due to High False Positive Rate; Recommendation for Storage in CDN or Cloud Buckets",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "This JavaScript code snippet is vulnerable to Cross-Site Scripting (XSS) attacks. The code is using hexadecimal representation of ASCII characters to obfuscate the actual function calls and data being used. This can lead to a high false positive rate when scanning for vulnerabilities, as the obfuscated code can be difficult to interpret. \n\nThe code is also using synchronous AJAX requests, which can lead to poor performance and a poor user experience. \n\nThe code is also not validating or sanitizing the input from the user before using it in the AJAX request, which can lead to Cross-Site Scripting (XSS) attacks if the input contains malicious scripts.\n\n## Mitigation Advice\n\nTo mitigate these vulnerabilities, you should:\n\n- Avoid using obfuscated code. It can make the code difficult to understand and maintain, and can lead to a high false positive rate when scanning for vulnerabilities.\n- Use asynchronous AJAX requests instead of synchronous requests to improve performance and user experience.\n- Validate and sanitize user input before using it. This can prevent Cross-Site Scripting (XSS) attacks.\n\n## Source Code Fix\n\nHere is a recommended fix for the code:\n\n```javascript\n$(\"#couponCode\").change(function () {\n    var couponCode = $(\"#couponCode\").val();\n    $.ajax({\n        type: \"POST\",\n        url: \"CouponCheck\",\n        data: { couponCode: couponCode },\n        async: true\n    });\n});\n\n$(\"#vipCouponCode\").change(function () {\n    var couponCode = $(\"#vipCouponCode\").val();\n    $.ajax({\n        type: \"POST\",\n        url: \"VipCouponCheck\",\n        data: { couponCode: couponCode },\n        async: true\n    });\n});\n```\n\n## Library Dependencies\n\nThe code requires the following library dependencies:\n\n- jQuery\n\n## OWASP and CWE Links\n\n- [OWASP Cross-Site Scripting (XSS)](https://owasp.org/www-community/attacks/xss/)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-79",
+                    "url": "https://cwe.mitre.org/data/definitions/79.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-79"
+                ]
+              }
+            },
+            {
+              "id": "1dd2e152-b454-33db-b02b-d278e4e72c14",
+              "name": "\"Non-standard and Improperly Named Objects Vulnerability\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe \"Non-standard and Improperly Named Objects Vulnerability\" in JavaScript refers to the practice of using non-standard or obfuscated object names, which can lead to confusion, poor readability, and potential security risks. In the provided code, the variable names are obfuscated, making it difficult to understand their purpose. This can lead to misuse of variables, incorrect assumptions about their functionality, and potential injection attacks if the variables are used to construct queries or commands.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, follow these general guidelines:\n\n1. Use clear, descriptive names for variables and functions. This improves code readability and maintainability.\n2. Avoid using global variables as much as possible. If you must use them, ensure they are properly sanitized before use.\n3. Validate and sanitize all inputs, especially those that are used to construct queries or commands. This can prevent injection attacks.\n4. Use strict mode (`\"use strict\";`) in JavaScript to catch common coding mistakes and \"unsafe\" actions.\n\n## Source Code Fix Recommendation\n\nThe provided code should be refactored to use clear, descriptive variable names. Here's a simple refactoring:\n\n```javascript\nvar ajaxUrls = [\"change\", \"val\", \"#couponCode\", \"POST\", \"couponCheckUrl\", \"ajax\", \"vipCouponCheckUrl\", \"#vipCouponCode\"];\n$(ajaxUrls[2])[ajaxUrls[0]](function (){\n    var couponCode = $(ajaxUrls[2])[ajaxUrls[1]]();\n    var ajaxCall = $[ajaxUrls[5]]({type: ajaxUrls[3], url: ajaxUrls[4], data: {couponCode: couponCode}, async: false});\n})[ajaxUrls[0]]();\n$(ajaxUrls[7])[ajaxUrls[0]](function (){\n    var vipCouponCode = $(ajaxUrls[2])[ajaxUrls[1]]();\n    var ajaxCall = $[ajaxUrls[5]]({type: ajaxUrls[3], url: ajaxUrls[6], data: {couponCode: vipCouponCode}, async: false});\n})[ajaxUrls[0]]();\n```\n\n## Library Dependencies\n\nThe provided code requires the jQuery library to execute properly.\n\n## References\n\n- [OWASP Top 10 - A3:2017-Sensitive Data Exposure](https://owasp.org/www-project-top-ten/2017/A3_2017-Sensitive_Data_Exposure)\n- [CWE-209: Information Exposure Through an Error Message](https://cwe.mitre.org/data/definitions/209.html)"
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-209",
+                    "url": "https://cwe.mitre.org/data/definitions/209.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-209"
+                ]
+              }
+            }
+          ],
           "language": "en-US",
           "contents": [
             "localizedData",
@@ -20,7 +65,78 @@
         }
       },
       "language": "en-US",
-      "results": [],
+      "results": [
+        {
+          "ruleId": "787a51f2-fcb1-3042-803d-a22d55def02b",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Exclusion of Unreadable Files from Scans Due to High False Positive Rate; Recommendation for Storage in CDN or Cloud Buckets"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/webapp/challenges/8edf0a8ed891e6fef1b650935a6c46b03379a0eebab36afcd1d9076f65d4ce62/couponCheck.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 1219,
+                  "snippet": {
+                    "text": "var _0xffee=[\"\\x63\\x68\\x61\\x6E\\x67\\x65\",\"\\x76\\x61\\x6C\",\"\\x23\\x63\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x6F\\x64\\x65\",\"\\x50\\x4F\\x53\\x54\",\"\\x38\\x65\\x64\\x66\\x30\\x61\\x38\\x65\\x64\\x38\\x39\\x31\\x65\\x36\\x66\\x65\\x66\\x31\\x62\\x36\\x35\\x30\\x39\\x33\\x35\\x61\\x36\\x63\\x34\\x36\\x62\\x30\\x33\\x33\\x37\\x39\\x61\\x30\\x65\\x65\\x62\\x61\\x62\\x33\\x36\\x61\\x66\\x63\\x64\\x31\\x64\\x39\\x30\\x37\\x36\\x66\\x36\\x35\\x64\\x34\\x63\\x65\\x36\\x32\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x68\\x65\\x63\\x6B\",\"\\x61\\x6A\\x61\\x78\",\"\\x38\\x65\\x64\\x66\\x30\\x61\\x38\\x65\\x64\\x38\\x39\\x31\\x65\\x36\\x66\\x65\\x66\\x31\\x62\\x36\\x35\\x30\\x39\\x33\\x35\\x61\\x36\\x63\\x34\\x36\\x62\\x30\\x33\\x33\\x37\\x39\\x61\\x30\\x65\\x65\\x62\\x61\\x62\\x33\\x36\\x61\\x66\\x63\\x64\\x31\\x64\\x39\\x30\\x37\\x36\\x66\\x36\\x35\\x64\\x34\\x63\\x65\\x36\\x32\\x56\\x69\\x70\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x68\\x65\\x63\\x6B\",\"\\x23\\x76\\x69\\x70\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x6F\\x64\\x65\"];$(_0xffee[2])[_0xffee[0]](function (){var _0xe83dx1=$(_0xffee[2])[_0xffee[1]]();var _0xe83dx2=$[_0xffee[5]]({type:_0xffee[3],url:_0xffee[4],data:{couponCode:_0xe83dx1},async:false});} )[_0xffee[0]]();$(_0xffee[7])[_0xffee[0]](function (){var _0xe83dx1=$(_0xffee[2])[_0xffee[1]]();var _0xe83dx2=$[_0xffee[5]]({type:_0xffee[3],url:_0xffee[6],data:{couponCode:_0xe83dx1},async:false});} )[_0xffee[0]]();"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "dde77a348c8da33b2978f29c54693e46331a95e3600474ac6f6fa9127691a2e4",
+            "glog-pfp-ruleFileCode/v1": "8b831d4ad4a30abdd4671bfb8ed17f6ef283a375f120d19f8eaf45f19ecf6da2"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "8b831d4ad4a30abdd4671bfb8ed17f6ef283a375f120d19f8eaf45f19ecf6da2"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "1dd2e152-b454-33db-b02b-d278e4e72c14",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Non-standard and Improperly Named Objects Vulnerability\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/webapp/challenges/8edf0a8ed891e6fef1b650935a6c46b03379a0eebab36afcd1d9076f65d4ce62/couponCheck.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 857,
+                  "endLine": 1,
+                  "endColumn": 898,
+                  "snippet": {
+                    "text": "var _0xffee=[\"\\x63\\x68\\x61\\x6E\\x67\\x65\",\"\\x76\\x61\\x6C\",\"\\x23\\x63\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x6F\\x64\\x65\",\"\\x50\\x4F\\x53\\x54\",\"\\x38\\x65\\x64\\x66\\x30\\x61\\x38\\x65\\x64\\x38\\x39\\x31\\x65\\x36\\x66\\x65\\x66\\x31\\x62\\x36\\x35\\x30\\x39\\x33\\x35\\x61\\x36\\x63\\x34\\x36\\x62\\x30\\x33\\x33\\x37\\x39\\x61\\x30\\x65\\x65\\x62\\x61\\x62\\x33\\x36\\x61\\x66\\x63\\x64\\x31\\x64\\x39\\x30\\x37\\x36\\x66\\x36\\x35\\x64\\x34\\x63\\x65\\x36\\x32\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x68\\x65\\x63\\x6B\",\"\\x61\\x6A\\x61\\x78\",\"\\x38\\x65\\x64\\x66\\x30\\x61\\x38\\x65\\x64\\x38\\x39\\x31\\x65\\x36\\x66\\x65\\x66\\x31\\x62\\x36\\x35\\x30\\x39\\x33\\x35\\x61\\x36\\x63\\x34\\x36\\x62\\x30\\x33\\x33\\x37\\x39\\x61\\x30\\x65\\x65\\x62\\x61\\x62\\x33\\x36\\x61\\x66\\x63\\x64\\x31\\x64\\x39\\x30\\x37\\x36\\x66\\x36\\x35\\x64\\x34\\x63\\x65\\x36\\x32\\x56\\x69\\x70\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x68\\x65\\x63\\x6B\",\"\\x23\\x76\\x69\\x70\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x6F\\x64\\x65\"];$(_0xffee[2])[_0xffee[0]](function (){var _0xe83dx1=$(_0xffee[2])[_0xffee[1]]();var _0xe83dx2=$[_0xffee[5]]({type:_0xffee[3],url:_0xffee[4],data:{couponCode:_0xe83dx1},async:false});} )[_0xffee[0]]();$(_0xffee[7])[_0xffee[0]](function (){var _0xe83dx1=$(_0xffee[2])[_0xffee[1]]();var _0xe83dx2=$[_0xffee[5]]({type:_0xffee[3],url:_0xffee[6],data:{couponCode:_0xe83dx1},async:false});} )[_0xffee[0]]();"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "356f47acb9c4054d21b9fe78203cf7048674b1e7253f5ef7ee284cae7fd7b8fe",
+            "glog-pfp-ruleFileCode/v1": "2c8b55f30a97fa603a50b4a161f401983b983f93b07bf6dc560d09e61c568ff9"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "2c8b55f30a97fa603a50b4a161f401983b983f93b07bf6dc560d09e61c568ff9"
+          },
+          "properties": {}
+        }
+      ],
       "newlineSequences": [
         "\r\n",
         "\n"
