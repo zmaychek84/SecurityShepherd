@@ -34,7 +34,65 @@
               }
             },
             {
-              "id": "1dd2e152-b454-33db-b02b-d278e4e72c14",
+              "id": "4fca9c60-fe2e-323d-bd4a-e72208677bac",
+              "name": "\"High Severity Vulnerability in Commons-IO Package, Resolved in Version 2.14.0\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe vulnerability in question is related to the Apache Commons IO library, specifically versions prior to 2.14.0. This library is widely used in Java applications for its utility classes that simplify common input/output operations. The vulnerability allows an attacker to potentially execute arbitrary code or commands on the system where the application is running.\n\nThis is a high severity vulnerability because it can lead to remote code execution (RCE), which is one of the most dangerous types of vulnerabilities. An attacker could potentially gain full control over the system, execute arbitrary commands, or even install malicious software.\n\n## Mitigation Advice\n\nThe most straightforward way to mitigate this vulnerability is to upgrade the Apache Commons IO library to version 2.14.0 or later. This can be done by updating the version number in the Maven dependency:\n\n```xml\n<dependency>\n    <groupId>commons-io</groupId>\n    <artifactId>commons-io</artifactId>\n    <version>2.14.0</version>\n</dependency>\n```\n\nIn addition to upgrading the library, it's also important to follow secure coding practices to prevent other types of vulnerabilities. This includes validating and sanitizing all user input, using parameterized queries to prevent SQL injection, and limiting the permissions of the application to the minimum necessary to perform its function.\n\n## Dependencies\n\nThe only library dependency required by the code example is the Apache Commons IO library.\n\n## References\n\n- [OWASP Top 10](https://owasp.org/www-project-top-ten/)\n- [Common Weakness Enumeration (CWE)](https://cwe.mitre.org/)\n- [CWE-502: Deserialization of Untrusted Data](https://cwe.mitre.org/data/definitions/502.html)\n\nPlease note that these links are subject to change and may not be accessible at all times."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-502",
+                    "url": "https://cwe.mitre.org/data/definitions/502.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-502"
+                ]
+              }
+            },
+            {
+              "id": "983c17cb-8e99-3b0a-ac34-41eba250261c",
+              "name": "\"High Severity Vulnerability in org.json:json Package, Resolved in Recent Update\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe `org.json:json` package is a popular Java library for working with JSON data. A high severity vulnerability was discovered in version `20220924` of this package. This vulnerability could allow an attacker to execute arbitrary code on the affected system, leading to a potential compromise of the system.\n\n## Security Concern\n\nThis vulnerability is a security concern because it could allow an attacker to execute arbitrary code on the affected system. This could lead to a complete compromise of the system, including unauthorized access to sensitive data, disruption of system functionality, and potential propagation of the attack to other systems.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to update the `org.json:json` package to the latest version, which includes a fix for this vulnerability. Regularly updating all software and libraries to their latest versions is a good general practice for mitigating vulnerabilities.\n\n## Source Code Fix Recommendation\n\nTo fix this vulnerability in the provided code, you should update the version of the `org.json:json` package in your `pom.xml` file to the latest version. Here is an example of how to do this:\n\n```xml\n<dependency>\n\t<groupId>org.json</groupId>\n\t<artifactId>json</artifactId>\n\t<version>LATEST_VERSION</version>\n</dependency>\n```\n\nReplace `LATEST_VERSION` with the actual latest version number.\n\n## Library Dependencies\n\nThe provided code example is a Maven dependency declaration, and it does not require any additional library dependencies to execute properly.\n\n## OWASP and CWE Resources\n\n- [OWASP Top Ten](https://owasp.org/www-project-top-ten/)\n- [CWE for Code Injection](https://cwe.mitre.org/data/definitions/94.html)\n\nPlease note that the links provided are valid and active at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [],
+                "severity": "HIGH",
+                "kind": "FAIL"
+              }
+            },
+            {
+              "id": "73344796-b0c8-330b-b13a-29cb1cb5960c",
+              "name": "Critical Dockerfile Vulnerability: Potential Exposure of Secret Environment Variables",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe Dockerfile vulnerability is a security concern because it potentially exposes secret environment variables. In the provided code example, the `MYSQL_ROOT_PASSWORD` is being set to the value of `DB_PASS`. If `DB_PASS` contains sensitive information, such as a password, it could be exposed in the Docker image layers. This is because Docker images are built layer by layer, and each `RUN`, `COPY`, and `ADD` command creates a new layer. The `ARG` command is not excluded from this, and its value can be found in the intermediate layers of the Docker image.\n\n## Security Concern\n\nThis is a security concern because anyone who can pull the Docker image can inspect the intermediate layers and potentially discover the secret environment variables. This could lead to unauthorized access to databases or other resources that use these secrets for authentication.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, avoid using `ARG` for sensitive data. Instead, use `ENV` to set environment variables. The `ENV` command does not leave traces in the Docker image layers. Also, consider using Docker secrets or other secure methods to manage sensitive data.\n\n## Source Code Fix Recommendation\n\nInstead of:\n\n```Dockerfile\nARG MYSQL_ROOT_PASSWORD=$DB_PASS\n```\n\nUse:\n\n```Dockerfile\nENV MYSQL_ROOT_PASSWORD=$DB_PASS\n```\n\n## Library Dependencies\n\nThe provided code example does not require any library dependencies to execute properly.\n\n## OWASP and CWE Resources\n\n- [CWE-798: Use of Hard-coded Credentials](https://cwe.mitre.org/data/definitions/798.html)\n\nPlease note that the links provided are valid and active for anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-798",
+                    "url": "https://cwe.mitre.org/data/definitions/798.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-798"
+                ]
+              }
+            },
+            {
+              "id": "317ae5a3-c739-3ea5-9c0c-d5c1c84985ad",
               "name": "\"Non-standard and Improperly Named Objects Vulnerability\"",
               "helpUri": "https://www.glog.ai/",
               "help": {
@@ -52,6 +110,72 @@
                 "kind": "FAIL",
                 "tags": [
                   "CWE-209"
+                ]
+              }
+            },
+            {
+              "id": "6472d5bf-3f93-3b2f-9d3f-c087598fca04",
+              "name": "\"Dockerfile Vulnerability: Missing '--no-install-recommends' Flag in 'apt-get' Command\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nThe Dockerfile vulnerability: Missing '--no-install-recommends' flag in 'apt-get' command is a security concern that arises when Docker images are built using the 'apt-get install' command without the '--no-install-recommends' flag. This can lead to the installation of unnecessary packages, increasing the attack surface of the Docker image.\n\n## Security Concern\n\nThe security concern here is that the installation of unnecessary packages can introduce additional vulnerabilities into the Docker image. Each additional package increases the attack surface, providing more opportunities for an attacker to exploit the system. Furthermore, these unnecessary packages can consume additional disk space and slow down the build process.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, it is recommended to always use the '--no-install-recommends' flag when using the 'apt-get install' command in a Dockerfile. This will ensure that only the necessary packages are installed, reducing the attack surface.\n\n## Source Code Fix Recommendation\n\nThe provided code:\n\n```Dockerfile\nRUN apt-get -qq update && apt-get install -y patch libargon2-0\n```\n\nShould be changed to:\n\n```Dockerfile\nRUN apt-get -qq update && apt-get install --no-install-recommends -y patch libargon2-0\n```\n\n## Library Dependencies\n\nThe code example requires the following library dependencies to execute properly:\n\n- patch\n- libargon2-0\n\n## OWASP and CWE Links\n\n- [OWASP Docker Security](https://cheatsheetseries.owasp.org/cheatsheets/Docker_Security_Cheat_Sheet.html)\n- [CWE-937: OWASP Top Ten 2017 Category A6 - Security Misconfiguration](https://cwe.mitre.org/data/definitions/937.html)\n\nPlease note that these links are active and accessible to anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-937",
+                    "url": "https://cwe.mitre.org/data/definitions/937.html"
+                  }
+                ],
+                "severity": "HIGH",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-937"
+                ]
+              }
+            },
+            {
+              "id": "91005279-33ee-3567-b1d5-588add72855d",
+              "name": "Exclusion of Unreadable Files from Scans Due to High False Positive Rate; Recommendation for Storage in CDN or Cloud Buckets",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "This vulnerability refers to the scenario where a JavaScript application excludes unreadable files from scans due to a high false positive rate. This can lead to potential security risks as malicious files could be overlooked during the scanning process. The recommendation is to store these files in a Content Delivery Network (CDN) or Cloud Buckets to ensure they are properly scanned and managed.\n\nMitigation Advice:\n1. Do not exclude files from scans based on their readability. All files, regardless of their state, should be scanned to ensure no malicious content is overlooked.\n2. Store files in a secure environment such as a CDN or Cloud Buckets. This not only provides a secure storage solution but also ensures that files are properly scanned and managed.\n3. Regularly update and patch your JavaScript libraries to ensure they are not susceptible to known vulnerabilities.\n\nSource Code Fix Recommendation:\nThe provided code does not directly relate to the vulnerability described. However, to ensure all files are included in scans, avoid using conditions that exclude files based on their readability. \n\nLibrary Dependencies:\nThe code example does not explicitly require any library dependencies to execute properly.\n\nRelevant Resources:\n- [CWE-494: Download of Code Without Integrity Check](https://cwe.mitre.org/data/definitions/494.html)\n\nPlease note that the links provided are active and accessible to anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-494",
+                    "url": "https://cwe.mitre.org/data/definitions/494.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-494"
+                ]
+              }
+            },
+            {
+              "id": "01f9f4f1-2b92-33c2-b978-ac5050da20f0",
+              "name": "\"Potential XSS Vulnerability from User-Controlled Data in HTML String\"",
+              "helpUri": "https://www.glog.ai/",
+              "help": {
+                "text": "",
+                "markdown": "## Description\n\nCross-Site Scripting (XSS) vulnerabilities occur when data enters a program from an untrusted source and is used to generate dynamic HTML content. The potential XSS vulnerability from user-controlled data in HTML string in JavaScript occurs when user-supplied data is included in an HTML response without proper validation and escaping. This allows an attacker to inject malicious scripts and have it executed by the victim's browser.\n\nIn the provided code, the vulnerability may exist if user-controlled data is used to generate HTML strings without proper sanitization.\n\n## Mitigation Advice\n\nTo mitigate this vulnerability, you should:\n\n1. **Validate Input:** Validate user input by only accepting known good. Use a whitelist of allowed inputs.\n\n2. **Encode Data:** Encode user-controlled data before including it in HTML output. This can prevent the browser from interpreting it as code.\n\n3. **Use Appropriate Response Headers:** To prevent XSS in HTTP responses that aren't intended to contain any HTML or JavaScript, you can use the Content-Type and X-Content-Type-Options headers to ensure that browsers interpret the responses the way you intend.\n\n4. **Content Security Policy:** Use Content Security Policy (CSP) to reduce the risk of XSS attacks by declaring what dynamic resources are allowed to load.\n\n## Source Code Fix Recommendation\n\nWithout the specific part of the code where user-controlled data is included in the HTML string, it's hard to provide a specific fix. However, a general fix would be to use the `textContent` property instead of `innerHTML` when inserting text from user-controlled sources into the HTML document.\n\n```javascript\n// Instead of\nelement.innerHTML = userControlledInput;\n\n// Use\nelement.textContent = userControlledInput;\n```\n\n## References\n\n- [OWASP XSS Prevention Cheat Sheet](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)\n- [CWE-79: Improper Neutralization of Input During Web Page Generation ('Cross-site Scripting')](https://cwe.mitre.org/data/definitions/79.html)\n\nPlease note that the provided links are active and accessible for anonymous users at the time of writing this report."
+              },
+              "properties": {
+                "cwe": [
+                  {
+                    "id": "CWE-79",
+                    "url": "https://cwe.mitre.org/data/definitions/79.html"
+                  }
+                ],
+                "severity": "MEDIUM",
+                "kind": "FAIL",
+                "tags": [
+                  "CWE-79"
                 ]
               }
             }
@@ -102,7 +226,7 @@
           "properties": {}
         },
         {
-          "ruleId": "1dd2e152-b454-33db-b02b-d278e4e72c14",
+          "ruleId": "317ae5a3-c739-3ea5-9c0c-d5c1c84985ad",
           "kind": "fail",
           "level": "warning",
           "message": {
@@ -117,9 +241,9 @@
                 },
                 "region": {
                   "startLine": 1,
-                  "startColumn": 857,
+                  "startColumn": 1,
                   "endLine": 1,
-                  "endColumn": 898,
+                  "endColumn": 818,
                   "snippet": {
                     "text": "var _0xffee=[\"\\x63\\x68\\x61\\x6E\\x67\\x65\",\"\\x76\\x61\\x6C\",\"\\x23\\x63\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x6F\\x64\\x65\",\"\\x50\\x4F\\x53\\x54\",\"\\x38\\x65\\x64\\x66\\x30\\x61\\x38\\x65\\x64\\x38\\x39\\x31\\x65\\x36\\x66\\x65\\x66\\x31\\x62\\x36\\x35\\x30\\x39\\x33\\x35\\x61\\x36\\x63\\x34\\x36\\x62\\x30\\x33\\x33\\x37\\x39\\x61\\x30\\x65\\x65\\x62\\x61\\x62\\x33\\x36\\x61\\x66\\x63\\x64\\x31\\x64\\x39\\x30\\x37\\x36\\x66\\x36\\x35\\x64\\x34\\x63\\x65\\x36\\x32\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x68\\x65\\x63\\x6B\",\"\\x61\\x6A\\x61\\x78\",\"\\x38\\x65\\x64\\x66\\x30\\x61\\x38\\x65\\x64\\x38\\x39\\x31\\x65\\x36\\x66\\x65\\x66\\x31\\x62\\x36\\x35\\x30\\x39\\x33\\x35\\x61\\x36\\x63\\x34\\x36\\x62\\x30\\x33\\x33\\x37\\x39\\x61\\x30\\x65\\x65\\x62\\x61\\x62\\x33\\x36\\x61\\x66\\x63\\x64\\x31\\x64\\x39\\x30\\x37\\x36\\x66\\x36\\x35\\x64\\x34\\x63\\x65\\x36\\x32\\x56\\x69\\x70\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x68\\x65\\x63\\x6B\",\"\\x23\\x76\\x69\\x70\\x43\\x6F\\x75\\x70\\x6F\\x6E\\x43\\x6F\\x64\\x65\"];$(_0xffee[2])[_0xffee[0]](function (){var _0xe83dx1=$(_0xffee[2])[_0xffee[1]]();var _0xe83dx2=$[_0xffee[5]]({type:_0xffee[3],url:_0xffee[4],data:{couponCode:_0xe83dx1},async:false});} )[_0xffee[0]]();$(_0xffee[7])[_0xffee[0]](function (){var _0xe83dx1=$(_0xffee[2])[_0xffee[1]]();var _0xe83dx2=$[_0xffee[5]]({type:_0xffee[3],url:_0xffee[6],data:{couponCode:_0xe83dx1},async:false});} )[_0xffee[0]]();"
                   }
@@ -128,11 +252,229 @@
             }
           ],
           "partialFingerprints": {
-            "glog-pfp-ruleFileLineCode/v1": "356f47acb9c4054d21b9fe78203cf7048674b1e7253f5ef7ee284cae7fd7b8fe",
-            "glog-pfp-ruleFileCode/v1": "2c8b55f30a97fa603a50b4a161f401983b983f93b07bf6dc560d09e61c568ff9"
+            "glog-pfp-ruleFileLineCode/v1": "5837ea46f46e01713b25ed34128b087243503af133bb10db630bb48fd8f0de8d",
+            "glog-pfp-ruleFileCode/v1": "35de8f46c894e0237f724315a1448750a8a6ffa7c525f947007cbbe64325bc86"
           },
           "fingerprints": {
-            "glog-fp-ruleFileCode/v1": "2c8b55f30a97fa603a50b4a161f401983b983f93b07bf6dc560d09e61c568ff9"
+            "glog-fp-ruleFileCode/v1": "35de8f46c894e0237f724315a1448750a8a6ffa7c525f947007cbbe64325bc86"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "983c17cb-8e99-3b0a-ac34-41eba250261c",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"High Severity Vulnerability in org.json:json Package, Resolved in Version 20231013 - CVE-2023-5072\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 36,
+                  "startColumn": 1,
+                  "endLine": 40,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "<dependency>\n\t\t\t<groupId>org.json</groupId>\n\t\t\t<artifactId>json</artifactId>\n\t\t\t<version>20220924</version>\n\t\t</dependency>"
+                  }
+                }
+              },
+              "message": {
+                "text": "pom.xml: org.json:json@20220924"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "929f20aff7a196232b60433959f999993a7815be1c9d3e6bbefa48f3cdd7522c",
+            "glog-pfp-ruleFileCode/v1": "b6a24b89bb7f8d877eadbe0d110cab9c72323404b9185707bf2ecc21bbc7e902"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "b6a24b89bb7f8d877eadbe0d110cab9c72323404b9185707bf2ecc21bbc7e902"
+          }
+        },
+        {
+          "ruleId": "4fca9c60-fe2e-323d-bd4a-e72208677bac",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"High Severity Vulnerability in Commons-IO Package, Resolved in Version 2.14.0\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "pom.xml",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 1,
+                  "endLine": 46,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "<dependency>\n\t\t\t<groupId>commons-io</groupId>\n\t\t\t<artifactId>commons-io</artifactId>\n\t\t\t<version>2.11.0</version>\n\t\t</dependency>"
+                  }
+                }
+              },
+              "message": {
+                "text": "pom.xml: commons-io:commons-io@2.11.0"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "f020341c5dee04af30810600c821252a4c141ef87a13c9c347d94eb1014cd370",
+            "glog-pfp-ruleFileCode/v1": "9c374e9930d1d7a677573dc2e50c0e953b16526ddb9e47232a28d34ab481f911"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "9c374e9930d1d7a677573dc2e50c0e953b16526ddb9e47232a28d34ab481f911"
+          }
+        },
+        {
+          "ruleId": "73344796-b0c8-330b-b13a-29cb1cb5960c",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Critical Dockerfile Vulnerability: Potential Exposure of Secret Environment Variables"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "docker/mariadb/Dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 22,
+                  "startColumn": 1,
+                  "endLine": 22,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "ARG MYSQL_ROOT_PASSWORD=$DB_PASS"
+                  }
+                }
+              },
+              "message": {
+                "text": "docker/mariadb/Dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "1df974b5052fae0c980754fd168f231d08089713ed4e76a539c4bd8052561648",
+            "glog-pfp-ruleFileCode/v1": "8fdc2e6fd149aa2ef6ff204f9df9b3a1e13cf698e28f50e1ac53e8ef1be8c0f1"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "8fdc2e6fd149aa2ef6ff204f9df9b3a1e13cf698e28f50e1ac53e8ef1be8c0f1"
+          }
+        },
+        {
+          "ruleId": "6472d5bf-3f93-3b2f-9d3f-c087598fca04",
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "\"Dockerfile Vulnerability: Missing '--no-install-recommends' Flag in 'apt-get' Command\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "Dockerfile",
+                  "uriBaseId": "ROOTPATH"
+                },
+                "region": {
+                  "startLine": 42,
+                  "startColumn": 1,
+                  "endLine": 42,
+                  "endColumn": 1,
+                  "snippet": {
+                    "text": "RUN apt-get -qq update && apt-get install -y patch libargon2-0"
+                  }
+                }
+              },
+              "message": {
+                "text": "Dockerfile"
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "593ed558f052c9f59806b1e30dea24023750edcd504e7bfc2984c7d8dde2ef4e",
+            "glog-pfp-ruleFileCode/v1": "d291b4f11151555994320b4bbf931da4b431eceacf05ac0dcd9b5027d2a0b0e0"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "d291b4f11151555994320b4bbf931da4b431eceacf05ac0dcd9b5027d2a0b0e0"
+          }
+        },
+        {
+          "ruleId": "91005279-33ee-3567-b1d5-588add72855d",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "Exclusion of Unreadable Files from Scans Due to High False Positive Rate; Recommendation for Storage in CDN or Cloud Buckets"
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/webapp/js/clipboard-js/clipboard.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 1,
+                  "endLine": 1,
+                  "endColumn": 850,
+                  "snippet": {
+                    "text": "(function(f){if(typeof exports===\"object\"&&typeof module!==\"undefined\"){module.exports=f()}else if(typeof define===\"function\"&&define.amd){define([],f)}else{var g;if(typeof window!==\"undefined\"){g=window}else if(typeof global!==\"undefined\"){g=global}else if(typeof self!==\"undefined\"){g=self}else{g=this}g.Clipboard = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require==\"function\"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error(\"Cannot find module '\"+o+\"'\");throw f.code=\"MODULE_NOT_FOUND\",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require==\"function\"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "028dcd0a48fc2b4f8ac329fcc5b2a39aa58a50a2973a3533def93e24a179a564",
+            "glog-pfp-ruleFileCode/v1": "bf3deffdbc142c0481416b94e206bbe30082152c4e1573ada8e7395b9db0f165"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "bf3deffdbc142c0481416b94e206bbe30082152c4e1573ada8e7395b9db0f165"
+          },
+          "properties": {}
+        },
+        {
+          "ruleId": "01f9f4f1-2b92-33c2-b978-ac5050da20f0",
+          "kind": "fail",
+          "level": "warning",
+          "message": {
+            "text": "\"Potential XSS Vulnerability from User-Controlled Data in HTML String\""
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "src/main/webapp/js/clipboard-js/clipboard.js",
+                  "uriBaseId": "%SRCROOT%"
+                },
+                "region": {
+                  "startLine": 1,
+                  "startColumn": 511,
+                  "endLine": 1,
+                  "endColumn": 556,
+                  "snippet": {
+                    "text": "(function(f){if(typeof exports===\"object\"&&typeof module!==\"undefined\"){module.exports=f()}else if(typeof define===\"function\"&&define.amd){define([],f)}else{var g;if(typeof window!==\"undefined\"){g=window}else if(typeof global!==\"undefined\"){g=global}else if(typeof self!==\"undefined\"){g=self}else{g=this}g.Clipboard = f()}})(function(){var define,module,exports;return (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require==\"function\"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error(\"Cannot find module '\"+o+\"'\");throw f.code=\"MODULE_NOT_FOUND\",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require==\"function\"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){"
+                  }
+                }
+              }
+            }
+          ],
+          "partialFingerprints": {
+            "glog-pfp-ruleFileLineCode/v1": "293598b4af7001cbe5a89aaa6619a31132d14dca566f64964ba9c46f9386d560",
+            "glog-pfp-ruleFileCode/v1": "04f9ebb9b457df5d59769cc503474516eb0572227c456ec3d3ddb222b6d53cff"
+          },
+          "fingerprints": {
+            "glog-fp-ruleFileCode/v1": "04f9ebb9b457df5d59769cc503474516eb0572227c456ec3d3ddb222b6d53cff"
           },
           "properties": {}
         }
